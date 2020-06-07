@@ -30,6 +30,7 @@ const cloudAccount = HandCashCloudAccount.fromCredentials({
                 { destination: 'nosetwo', currencyCode: 'USD', sendAmount: 0.005 },
                 { destination: 'rjseibane', currencyCode: 'SAT', sendAmount: 5000 },
             ],
+            attachment: { format: 'json', value: {"param1": "value1", "param2": "value2"} }
         });
         console.log(`PaymentResult: ${JSON.stringify(paymentResult)}`);
     } catch (e) {

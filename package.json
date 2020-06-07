@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "handcash-connect": "file:../../IdeaProjects/handcash-connect-sdk-js-beta"
+    "handcash-connect": "../handcash-connect-sdk-js-beta"
   }
 }

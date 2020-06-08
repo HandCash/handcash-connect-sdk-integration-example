@@ -25,12 +25,12 @@ const cloudAccount = HandCashCloudAccount.fromCredentials({
         console.log(`Balance: ${JSON.stringify(balance)}`);
 
         const paymentResult = await cloudAccount.wallet.pay({
-            description: 'Testing SDK',
+            description: 'From Connect SDK',
             payments: [
                 { destination: 'nosetwo', currencyCode: 'USD', sendAmount: 0.005 },
-                { destination: 'rjseibane', currencyCode: 'SAT', sendAmount: 5000 },
+                { destination: 'keyless', currencyCode: 'SAT', sendAmount: 5000 },
             ],
-            attachment: { format: 'json', value: {"param1": "value1", "param2": "value2"} }
+            attachment: { format: 'json', value: {param1: "value1", param2: "value2"} }
         });
         console.log(`PaymentResult: ${JSON.stringify(paymentResult)}`);
     } catch (e) {

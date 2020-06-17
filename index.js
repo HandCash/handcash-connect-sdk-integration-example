@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 const { HandCashCloudAccount, AppAuthorization } = require('handcash-connect');
-
 const cloudAccount = HandCashCloudAccount.fromCredentials({
-    userAuthorizationToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhcHBJZCI6IjVlZDY5NzhlMzczNzkwNTdhZjU5MmY1MyIsInVzZXJJZCI6IjVlYjY4MWQxMzIwNjVkMDA1Mjk2NGUwMiIsImV4cGlyYXRpb25UaW1lc3RhbXAiOjk5OTE1NzQ1ODB9.WeurQYxI4AYjhb5IAendXsIXrPTHReIEwmufDSBtAJcJbpwR0wA4u57OqvUStVNsuxUfFlVj90eY4so7EA6eiw',
-    signingToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6InJqc2VpYmFuZUBnbWFpbC5jb20iLCJleHBpcmF0aW9uVGltZXN0YW1wIjo5OTk2NjI0OTY2NzI1fQ.E1mkkG7wWme2ItUWR7nuOEq5m0bJ16o7t8saAixRnCdcrUOQosiam-YQr6wYWA_3iCj2mB_l9I8XwY-enirtMQ',
+    userAuthorizationToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhcHBJZCI6IjVlZWE0N2UzOGEyMmI3Y2Q0ZjI3YmQ3ZSIsInVzZXJJZCI6IjVlZTllYTEzODllMGMyMDAzNzMzNTRiNiIsImV4cGlyYXRpb25UaW1lc3RhbXAiOjE1OTUwMDQxOTd9.d8XH8WXjmyrmSDPIk0DGso5_z28s2ISdlYEZJZ3Z76i6lh85rDAa5L9AmmmXl8wFU_k1_6CNHntat1N-wDDXxg',
+    signingToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6InJqc2VpYmFuZUBnbWFpbC5jb20iLCJleHBpcmF0aW9uVGltZXN0YW1wIjoxNTk3NTY5MTI0NTU3fQ.JNbXgvbfeLR4hXoLntjrBfMyfLkZHM0JE72B9QuG-xzcd9zqmQDYtG_yhE-70QSl2cNBpThlCJeShDQoYYZELQ',
 });
 
 (async () => {
@@ -27,8 +26,8 @@ const cloudAccount = HandCashCloudAccount.fromCredentials({
         const paymentResult = await cloudAccount.wallet.pay({
             description: 'From Connect SDK',
             payments: [
-                { destination: 'nosetwo', currencyCode: 'USD', sendAmount: 0.005 },
-                { destination: 'keyless', currencyCode: 'SAT', sendAmount: 5000 },
+                { destination: 'nosetwo@internal.handcash.io', currencyCode: 'USD', sendAmount: 0.005 },
+                { destination: 'keyless@internal.handcash.io', currencyCode: 'SAT', sendAmount: 5000 },
             ],
             attachment: { format: 'json', value: {param1: "value1", param2: "value2"} }
         });

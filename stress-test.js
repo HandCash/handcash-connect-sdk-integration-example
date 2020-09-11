@@ -1,28 +1,33 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
-const cloudAccount = HandCashCloudAccount.fromAuthToken(
-    '3362abede23a6364db469bdb74dd04022ea786937cc8de9a0b0be410d3ed2f97',
-    Environments.iae,
-);
+const pLimit = require('p-limit');
+
+const limit = pLimit(5);
 
 (async () => {
     try {
-        const publicProfile = await cloudAccount.profile.getPublicProfile();
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(
+            'd42ce7ab6f79431e32af1204c44f5b91d69fe6a06846e124a15b580e2f280545',
+            Environments.iae,
+        );
+        const previousPayment = await cloudAccount.wallet.getPayment('0a25cc07953de261e2f7dbc3601a61d4e74f96b99cd55c0755df9b9888cdccbc');
+        console.log(JSON.stringify(previousPayment));
+        const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
-            Array(10)
+            Array(50)
                 .fill(0)
-                .map(_ => cloudAccount.wallet.pay({
+                .map(() => limit(() => cloudAccount.wallet.pay({
                     description: 'Stress test',
                     payments: [
                         {destination: publicProfile.handle, currencyCode: 'USD', sendAmount: 0.005},
                     ],
-                    attachment: {format: 'json', value: {param1: "value1", param2: "value2"}}
-                })
+                }))
                     .then(paymentResult => console.log(JSON.stringify(paymentResult)))
-                    .catch(error => console.error(error)))
+                    .catch(error => console.error(JSON.stringify(error))))
         );
     } catch (e) {
         console.error(e);
     }
+    console.error('Stress Test Completed');
 })();

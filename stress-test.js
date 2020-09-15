@@ -7,14 +7,12 @@ const limit = pLimit(3);
 
 (async () => {
     try {
-        var successCount = 0;
-        var errorCount = 0;
+        let successCount = 0;
+        let errorCount = 0;
         const cloudAccount = HandCashCloudAccount.fromAuthToken(
             'd42ce7ab6f79431e32af1204c44f5b91d69fe6a06846e124a15b580e2f280545',
             Environments.iae,
         );
-        const previousPayment = await cloudAccount.wallet.getPayment('0a25cc07953de261e2f7dbc3601a61d4e74f96b99cd55c0755df9b9888cdccbc');
-        console.log(JSON.stringify(previousPayment));
         const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
             Array(50)

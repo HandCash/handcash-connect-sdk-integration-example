@@ -4,8 +4,11 @@ Example of how to integrate HandCash Connect SDK
 First things first:
 `npm install`
 
-## Hello world
+## Hello world 🙂
 `npm run start`
 
-## Stress testing
+## Stress testing 😳
 `npm run stress-test`
+
+## Stress testing (with parallelization) 🤯
+`npm run stress-test-parallel`

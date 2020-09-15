@@ -1,28 +1,36 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
-const cloudAccount = HandCashCloudAccount.fromAuthToken(
-    '3362abede23a6364db469bdb74dd04022ea786937cc8de9a0b0be410d3ed2f97',
-    Environments.iae,
-);
+const pLimit = require('p-limit');
+
+const limit = pLimit(3);
 
 (async () => {
     try {
-        const publicProfile = await cloudAccount.profile.getPublicProfile();
+        let successCount = 0;
+        let errorCount = 0;
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(
+            'd42ce7ab6f79431e32af1204c44f5b91d69fe6a06846e124a15b580e2f280545',
+            Environments.iae,
+        );
+        const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
-            Array(10)
+            Array(50)
                 .fill(0)
-                .map(_ => cloudAccount.wallet.pay({
-                    description: 'Stress test',
+                .map(() => limit(() => cloudAccount.wallet.pay({
+                    description: 'Pew pew',
+                    appAction: 'tip',
                     payments: [
                         {destination: publicProfile.handle, currencyCode: 'USD', sendAmount: 0.005},
                     ],
-                    attachment: {format: 'json', value: {param1: "value1", param2: "value2"}}
+                    attachment: {format: 'base64', value: 'cGV3IHBldyBwZXc='}
                 })
                     .then(paymentResult => console.log(JSON.stringify(paymentResult)))
-                    .catch(error => console.error(error)))
-        );
+                    .then(_ => successCount++)
+                    .catch(error => console.error(JSON.stringify(error)))
+                    .then(_ => errorCount++))));
     } catch (e) {
         console.error(e);
     }
+    console.error(`Stress Test Completed - Successes: ${successCount}, Errors: ${errorCount}`);
 })();

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "index": "node index.js",
+    "encryption": "node encryption.js",
     "stress-test": "node stress-test.js",
     "stress-test-parallel": "node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +15,7 @@
   "dependencies": {
     "@handcash/handcash-connect-beta": "../handcash-connect-sdk-js-beta",
     "random-number-csprng": "^1.0.2",
-    "p-limit": "^3.0.2"
+    "p-limit": "^3.0.2",
+    "bsv": "^1.5.4"
   }
 }

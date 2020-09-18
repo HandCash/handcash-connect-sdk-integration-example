@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 const {HandCashCloudAccount, AppAuthorization, Environments} = require('@handcash/handcash-connect-beta');
 const cloudAccount = HandCashCloudAccount.fromAuthToken(
-    'd42ce7ab6f79431e32af1204c44f5b91d69fe6a06846e124a15b580e2f280545',
+    '7ae61183cc897ca7667f368b0d22357abf6fed2f6517fe38a734037409292a03',
     Environments.iae,
 );
 

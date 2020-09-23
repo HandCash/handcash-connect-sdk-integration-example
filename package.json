@@ -11,9 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "ISC",^
   "dependencies": {
-    "@handcash/handcash-connect-beta": "../handcash-connect-sdk-js-beta",
+    "@handcash/handcash-connect-beta": "0.1.4",
     "random-number-csprng": "^1.0.2",
     "p-limit": "^3.0.2",
     "bsv": "^1.5.4"

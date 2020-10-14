@@ -14,8 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "@handcash/handcash-connect-beta": "0.1.4",
-    "random-number-csprng": "^1.0.2",
+    "bsv": "^1.5.4",
+    "dotenv": "^8.2.0",
     "p-limit": "^3.0.2",
-    "bsv": "^1.5.4"
+    "random-number-csprng": "^1.0.2",
+    "superagent": "^6.1.0"
   }
 }

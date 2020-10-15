@@ -20,18 +20,35 @@ First things first:
 
 ## Create Testers 🤖
 
-`npm run create-bots <numberOfTesters>` (max=100)
+`npm run create-bots <numberOfTesters> <armyNumber>` 
+defaults:
+- numberOfTesters=100
+- armyNumber=1 
 
 ## Top up Testers :money_with_wings: 
 
-`npm run top-up <amountUSD>`
+`npm run top-up <amountUSD> <armyNumber>`
+defaults:
+- armyNumber=1 
 
 ## Stress testing with Bot Army 🤖🤖🤖
 
-`npm run bot-stress-test <NumberOfTXsPerTester>`
+`npm run bot-stress-test <NumberOfTXsPerTester> <armyNumber>`
+defaults:
+- NumberOfTXsPerTester=1
+- armyNumber=1 
+
+## Time based stress testing with Bot Army 🤖🤖🤖
+`npm run bot-timed-stress-test <numberOfSeconds> <armyNumber>`
+defaults:
+- numberOfSeconds=60
+- armyNumber=1 
+
+
+## Mult-send stress test
+
+`npm run multi-send-stress-test <numberOfSeconds> <armyNumber>`
 
 ### Docker 
-
-- `docker build -t connect-tester .`
-- `docker run <command>`
-
+Run timed stress test with mutiple armies
+`docker-compose up`

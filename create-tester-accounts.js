@@ -18,9 +18,13 @@ const admin_token = process.env.admin_token;
             }) 
         const newTesters = resp.body;
       
-        const jsonString = fs.readFileSync(`./testers/${appId}.json`)
-        const existingTesters = JSON.parse(jsonString)
-          
+        let existingTesters;
+        try{
+            const jsonString = fs.readFileSync(`./testers/${appId}.json`)
+            existingTesters = JSON.parse(jsonString)
+        }catch(err){
+        }
+
         let testers = {
             items: []
         }

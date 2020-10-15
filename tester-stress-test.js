@@ -48,7 +48,7 @@ const chalk = require('chalk');
                     attachment: {format: 'base64', value: 'cGV3IHBldyBwZXc='}
                 })
                 .then((paymentResult) => {
-                    console.log(`success`, chalk.green(`${paymentResult.transactionId}`))
+                   console.log(`success`, chalk.green(`${paymentResult.transactionId}`))
                 })
                 .then(_ => successCount++)
                 .catch((error) => {
@@ -60,6 +60,6 @@ const chalk = require('chalk');
         console.error(`Stress Test Completed - Successes: ${chalk.green(successCount)}, Errors: ${chalk.red(errorCount)}`);
 
     } catch(err){
-        console.log('here', err);
+        console.log(err);
     }
 })();

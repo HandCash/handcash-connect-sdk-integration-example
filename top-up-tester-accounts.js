@@ -46,6 +46,6 @@ const yes = ['y', 'yes'];
         }else{
             console.log(chalk.red(err.message))
         }
-        process.exit()
     }
+    process.exit()
 })();

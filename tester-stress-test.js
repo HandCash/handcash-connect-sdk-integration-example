@@ -7,7 +7,6 @@ const { PrivateKey } = require('bsv');
 const appId = process.env.appId;
 const sendAmount = 600;
 const numberOfTransactions = Number(process.argv[2] || 1);
-console.log(numberOfTransactions)
 const chalk = require('chalk');
 
 (async () => {
@@ -61,6 +60,6 @@ const chalk = require('chalk');
         console.error(`Stress Test Completed - Successes: ${chalk.green(successCount)}, Errors: ${chalk.red(errorCount)}`);
 
     } catch(err){
-        console.log(err);
+        console.log('here', err);
     }
 })();

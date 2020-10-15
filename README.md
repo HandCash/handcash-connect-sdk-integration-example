@@ -20,7 +20,7 @@ First things first:
 
 ## Create Testers 🤖
 
-`npm run create-bots <numberOfTesters>` 
+`npm run create-bots <numberOfTesters>` (max=100)
 
 ## Top up Testers :money_with_wings: 
 
@@ -29,3 +29,9 @@ First things first:
 ## Stress testing with Bot Army 🤖🤖🤖
 
 `npm run bot-stress-test <NumberOfTXsPerTester>`
+
+### Docker 
+
+- `docker build -t connect-tester .`
+- `docker run <command>`
+

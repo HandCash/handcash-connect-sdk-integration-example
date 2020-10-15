@@ -1,36 +1,76 @@
+require('dotenv').config()
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
 const fs = require('fs');
-const appId = '5ed6978e37379057af592f53';
-const fundingAccessToken = '2eee4324125b74e62565be3090ce67f14333c68b18b784655ee6665b8a225609&';
-const topUpAmount = .01;
+const appId = process.env.appId;
+const fundingAccessToken = process.env.fundingAccessToken;
+const topUpAmount =  process.argv[2];
+const rl = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+const chalk = require('chalk');
+const yes = ['y', 'yes'];
 
 (async () => {   
-    let testers; 
+    
     try {
+        if(!fundingAccessToken){
+            console.log(chalk.red("fundingAccessToken not set get one here https://handcash-web.firebaseapp.com/#/authorizeApp?appId=5ed6978e37379057af592f53"))
+            process.exit()
+        }
+        if(!topUpAmount){
+            console.log(red, "Please provide top-up amount in USD like ... \nnpm run top-up .01")
+            process.exit()
+        }
+
         const jsonString = fs.readFileSync(`./testers/${appId}.json`)
-        testers = JSON.parse(jsonString)
-      } catch(err) {
-        console.log(err.message)
-      }
-    const cloudAccount = HandCashCloudAccount.fromAuthToken(
-        fundingAccessToken,
-        Environments.iae,
-    );
+        const testers = (JSON.parse(jsonString)).items
 
-    console.log(`Sending 1 cent to ${testers.items.length} testers`)
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(
+            fundingAccessToken,
+            Environments.iae,
+        );
+        const { publicProfile, privateProfile } = await cloudAccount.profile.getCurrentProfile();
 
-    let i,j,temparray,chunk = 200;
-    for (i=0,j=testers.items.length; i<j; i+=chunk) {
-        temparray = testers.items.slice(i,i+chunk);
+
+        rl.setPrompt(chalk.yellow(`Send ${topUpAmount} to ${testers.length} (${topUpAmount*testers.length} USD) Tester Accounts from ${publicProfile.handle}? [Y | N] `));
+        rl.prompt();
+
+        const res = await new Promise(( resolve , reject) => {
+            let response
+            rl.on('line', (userInput) => {
+                response = userInput;
+                rl.close();
+            });
+    
+            rl.on('close', () => {
+                resolve(response.toLowerCase());
+            });
+    
+        });
+       if(!yes.includes(res)){
+           console.log(chalk.red('Canceling transaction'))
+       }
+ 
+        let i,j,temparray,chunk = 200;
+        for (i=0,j=testers.length; i<j; i+=chunk) {
+            temparray = testers.slice(i,i+chunk);
         
-        const paymentResult = await cloudAccount.wallet.pay({
-            description: 'Top up',
-            appAction: 'ping',
-            payments: temparray.map((account) => {
-                return { destination: account.alias, currencyCode: 'USD', sendAmount: topUpAmount}
+            const paymentResult = await cloudAccount.wallet.pay({
+                description: 'Top up',
+                appAction: 'ping',
+                payments: temparray.map((account) => {
+                    return { destination: account.alias, currencyCode: 'USD', sendAmount: topUpAmount}
+                })
             })
-        })
-        console.log(paymentResult);
+            console.log(chalk.green('txid: ',paymentResult.transactionId));
+        }
+    } catch(err) {
+        if(err.httpStatusCode === 409){
+            console.log(chalk.red(err.message+ ' Broke Bitch!'),)
+        }else{
+            console.log(chalk.red(err.message))
+        }
+        process.exit()
     }
-
 })();

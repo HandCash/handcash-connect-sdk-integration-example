@@ -18,7 +18,7 @@ First things first:
 ## Stress testing (with parallelization) 🤯
 `npm run stress-test-parallel`
 
-## Create Testers :robot_face: 
+## Create Testers 🤖
 
 `npm run create-bots <numberOfTesters>` (max=100)
 
@@ -26,7 +26,7 @@ First things first:
 
 `npm run top-up <amountUSD>`
 
-## Stress tests with Bot Army :robot_face: :robot_face: :robot_face: 
+## Stress testing with Bot Army 🤖🤖🤖
 
 `npm run bot-stress-test <NumberOfTXsPerTester>`
 
@@ -34,3 +34,4 @@ First things first:
 
 - `docker build -t connect-tester .`
 - `docker run <command>`
+

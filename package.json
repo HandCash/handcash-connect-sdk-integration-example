@@ -6,6 +6,9 @@
   "scripts": {
     "index": "node index.js",
     "encryption": "node encryption.js",
+    "create-bots": "node create-tester-accounts.js",
+    "top-up": "node top-up-tester-accounts.js",
+    "bot-stress-test": "node tester-stress-test.js",
     "stress-test": "node stress-test.js",
     "stress-test-parallel": "node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,8 +17,11 @@
   "license": "ISC",
   "dependencies": {
     "@handcash/handcash-connect-beta": "0.1.4",
-    "random-number-csprng": "^1.0.2",
+    "bsv": "^1.5.4",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
     "p-limit": "^3.0.2",
-    "bsv": "^1.5.4"
+    "random-number-csprng": "^1.0.2",
+    "superagent": "^6.1.0"
   }
 }

@@ -54,5 +54,6 @@ defaults:
 `npm run multi-send-stress-test <numberOfSeconds> <armyNumber>`
 
 ### Docker 
-Run timed stress test with mutiple armies
+Run timed stress test with 4 armies
+
 `docker-compose up`

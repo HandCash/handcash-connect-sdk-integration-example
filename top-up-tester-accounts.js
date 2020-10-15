@@ -1,15 +1,10 @@
 require('dotenv').config()
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
 const fs = require('fs');
-const appId = process.env.appId;
 const fundingAccessToken = process.env.fundingAccessToken;
 const topUpAmount =  Number(process.argv[2] || .01);
-const rl = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+const army = Number(process.argv[3]) || 1;
 const chalk = require('chalk');
-const yes = ['y', 'yes'];
 
 (async () => {   
     
@@ -19,7 +14,7 @@ const yes = ['y', 'yes'];
             process.exit()
         }
 
-        const jsonString = fs.readFileSync(`./testers/${appId}.json`)
+        const jsonString = fs.readFileSync(`./testers/${army}.json`)
         const testers = (JSON.parse(jsonString)).items
 
         const cloudAccount = HandCashCloudAccount.fromAuthToken(
@@ -46,6 +41,6 @@ const yes = ['y', 'yes'];
         }else{
             console.log(chalk.red(err.message))
         }
-        process.exit()
     }
+    process.exit()
 })();

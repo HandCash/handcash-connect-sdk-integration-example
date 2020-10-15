@@ -2,7 +2,7 @@ require('dotenv').config();
 const http = require('superagent');
 const fs = require('fs');
 const { Environments } = require('@handcash/handcash-connect-beta');
-const numberOfTesters = Number(process.argv[2] || 100);
+const numberOfTesters = Number(process.argv[2] || 100) > 100 ? 100 : Number(process.argv[2] || 100);
 const appId = process.env.appId;
 const admin_token = process.env.admin_token;
 

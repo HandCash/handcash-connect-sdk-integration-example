@@ -20,7 +20,7 @@ First things first:
 
 ## Create Testers :robot_face: 
 
-`npm run create-bots <numberOfTesters>` 
+`npm run create-bots <numberOfTesters>` (max=100)
 
 ## Top up Testers :money_with_wings: 
 
@@ -29,3 +29,8 @@ First things first:
 ## Stress tests with Bot Army :robot_face: :robot_face: :robot_face: 
 
 `npm run bot-stress-test <NumberOfTXsPerTester>`
+
+### Docker 
+
+- `docker build -t connect-tester .`
+- `docker run <command>`

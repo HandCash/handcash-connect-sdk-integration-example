@@ -40,9 +40,6 @@ defaults:
 - numberOfSeconds=60
 - armyNumber=1 
 
-## Mult-send stress test
-
-`npm run multi-send-stress-test <numberOfSeconds> <armyNumber>`
 
 ## Docker 🚀 🚀 🚀 
 Run timed stress test with 4 armies

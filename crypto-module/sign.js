@@ -1,7 +1,7 @@
 const http = require('superagent');
 const pLimit = require('p-limit');
 const limit = pLimit(10);
-const time = Number(process.argv[2] || 180);
+const time = Number(process.argv[2] || 60);
 const apiEndpoint = 'https://crypto-module.iae.cloud.handcash.io';
 const chalk = require('chalk');
 
@@ -73,10 +73,7 @@ function getDerive() {
 
 async function getPromise(){
    await getDerive();
-   await getDerive();
    await getSign();
-   await getDerive();
-   await getDerive();
 }
 
 (async () => {

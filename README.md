@@ -33,21 +33,12 @@ defaults:
 defaults:
 - armyNumber=1 
 
-## Stress testing with Bot Army 🤖🤖🤖
-
-`npm run bot-stress-test <NumberOfTXsPerTester> <armyNumber>`
-
-defaults:
-- NumberOfTXsPerTester=1
-- armyNumber=1 
-
 ## Time based stress testing with Bot Army 🤖🤖🤖
 `npm run bot-timed-stress-test <numberOfSeconds> <armyNumber>`
 
 defaults:
 - numberOfSeconds=60
 - armyNumber=1 
-
 
 ## Mult-send stress test
 
@@ -57,3 +48,9 @@ defaults:
 Run timed stress test with 4 armies
 
 `docker-compose up`
+
+## Defund the police :no_entry_sign: :male-police-officer: :oncoming_police_car: 
+
+Returns all funds back to the `fundingAccessToken`
+
+`npm run defund-the-police`

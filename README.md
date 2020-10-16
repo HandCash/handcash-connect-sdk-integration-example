@@ -49,7 +49,7 @@ Run timed stress test with 4 armies
 
 `docker-compose up`
 
-## Defund the police :no_entry_sign: :male-police-officer: :oncoming_police_car: 
+## Defund the police :no_entry_sign: 👮‍♂️  :oncoming_police_car: 
 
 Returns all funds back to the `fundingAccessToken`
 

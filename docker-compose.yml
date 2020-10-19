@@ -1,23 +1,33 @@
 version: '3'
 
 services:
-  bot-army-1:
+  derive_1:
     build:
       context: .
       dockerfile: Dockerfile
-    command:  "npm run bot-timed-stress-test 300 1"
-  bot-army-2:
+    command:  "npm run stress-test-derive 300"
+  derive_2:
     build:
       context: .
       dockerfile: Dockerfile
-    command:  "npm run bot-timed-stress-test 300 2"
-  bot-army-3:
+    command:  "npm run stress-test-derive 300"
+  derive_3:
     build:
       context: .
       dockerfile: Dockerfile
-    command:  "npm run bot-timed-stress-test 300 3"
-  bot-army-4:
+    command:  "npm run stress-test-derive 300"
+  derive_4:
     build:
       context: .
       dockerfile: Dockerfile
-    command:  "npm run bot-timed-stress-test 300 4"
+    command:  "npm run stress-test-derive 300"
+  sign_1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run stress-test-sign 300"
+  sign_2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run stress-test-sign 300"

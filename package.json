@@ -14,7 +14,9 @@
     "multi-send-stress-test": "node multi-send-stress-test.js",
     "stress-test": "node stress-test.js",
     "stress-test-parallel": "node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "stress-test-derive": "node derive.js",
+    "stress-test-sign": "node sign.js"
   },
   "author": "",
   "license": "ISC",

@@ -21,3 +21,13 @@ services:
       context: .
       dockerfile: Dockerfile
     command:  "npm run bot-timed-stress-test 300 4"
+  bot-army-5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 5"
+  bot-army-6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 6"

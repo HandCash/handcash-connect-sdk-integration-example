@@ -16,7 +16,8 @@
     "stress-test-parallel": "node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stress-test-derive": "node derive.js",
-    "stress-test-sign": "node sign.js"
+    "stress-test-sign": "node sign.js",
+    "shuffle-utxos": "node tester-stress-test.js"
   },
   "author": "",
   "license": "ISC",

@@ -48,7 +48,7 @@ function readdirAsync(path) {
     })));
 
     cloudAccounts = await Promise.all(cloudAccounts.map((account, index) => limit(() => {
-
+        if(balances[index].spendableSatoshiBalance ===  0) return undefined;
         return account.wallet.pay({
             description: 'Pew pew',
                         appAction: 'tip',

@@ -42,9 +42,13 @@ defaults:
 
 
 ## Docker 🚀 🚀 🚀 
-Run timed stress test with 4 armies
+Run timed stress test
 
-`docker-compose up`
+`docker-compose -f 4x50x5min.docker-compose.yml up`
+`docker-compose -f 6x50x5min.docker-compose.yml up`
+`docker-compose -f 4x50x10min.docker-compose.yml up`
+`docker-compose -f 6x50x5min.docker-compose.yml up`
+
 
 ## Defund the police :no_entry_sign: 👮‍♂️  :oncoming_police_car: 
 

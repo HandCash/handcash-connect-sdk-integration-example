@@ -3,19 +3,18 @@
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
 const pLimit = require('p-limit');
 
-const limit = pLimit(3);
+const limit = pLimit(5);
+const totalPayments = 20;
+const authToken = process.argv[2];
 
 (async () => {
     let successCount = 0;
     let errorCount = 0;
     try {
-        const cloudAccount = HandCashCloudAccount.fromAuthToken(
-            '7ae61183cc897ca7667f368b0d22357abf6fed2f6517fe38a734037409292a03',
-            Environments.iae,
-        );
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken);
         const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
-            Array(50)
+            Array(totalPayments)
                 .fill(0)
                 .map(() => limit(() => cloudAccount.wallet.pay({
                         description: 'Pew pew',

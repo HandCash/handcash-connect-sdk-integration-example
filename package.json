@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "index": "node index.js",
-    "encryption": "node encryption.js",
+    "app-to-user-encryption": "node app-to-user-encryption.js",
+    "user-to-user-encryption": "node user-to-user-encryption.js",
     "stress-test": "node stress-test.js",
     "stress-test-parallel": "node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js & node stress-test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,9 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@handcash/handcash-connect-beta": "0.1.4",
-    "random-number-csprng": "^1.0.2",
-    "p-limit": "^3.0.2",
-    "bsv": "^1.5.4"
+    "@handcash/handcash-connect-beta": "^0.1.9",
+    "@sendgrid/mail": "^7.4.0",
+    "bsv": "^1.5.4",
+    "p-limit": "^3.1.0",
+    "random-number-csprng": "^1.0.2"
   }
 }

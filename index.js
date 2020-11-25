@@ -1,20 +1,18 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-const {HandCashCloudAccount, AppAuthorization, Environments} = require('@handcash/handcash-connect-beta');
-const cloudAccount = HandCashCloudAccount.fromAuthToken(
-    '7ae61183cc897ca7667f368b0d22357abf6fed2f6517fe38a734037409292a03',
-    Environments.iae,
-);
+const {HandCashCloudAccount, AppAuthorization} = require('@handcash/handcash-connect-beta');
+const authToken = process.argv[2];
+const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken);
 
 (async () => {
     try {
-        const redirectionLoginUrl = await AppAuthorization.getRedirectionLoginUrl('1234567890', Environments.iae);
+        const redirectionLoginUrl = await AppAuthorization.getRedirectionLoginUrl('5fbe19d9088ee710cf8fc614');
         console.log(`Redirection login URL: ${redirectionLoginUrl}`);
 
-        const previousPayment = await cloudAccount.wallet.getPayment('0a25cc07953de261e2f7dbc3601a61d4e74f96b99cd55c0755df9b9888cdccbc');
+        const previousPayment = await cloudAccount.wallet.getPayment('b808d3113cca45ebd842fb114ca794fc3bc91656a5f8e313e8df373759f99e5c');
         console.log(`Previous payment: ${JSON.stringify(previousPayment)}`);
 
-        const { publicProfile, privateProfile } = await cloudAccount.profile.getCurrentProfile();
+        const {publicProfile, privateProfile} = await cloudAccount.profile.getCurrentProfile();
         console.log(`Public Profile: ${JSON.stringify(publicProfile)}`);
         console.log(`Private Profile: ${JSON.stringify(privateProfile)}`);
 
@@ -31,6 +29,6 @@ const cloudAccount = HandCashCloudAccount.fromAuthToken(
         });
         console.log(`PaymentResult: ${JSON.stringify(paymentResult)}`);
     } catch (e) {
-        console.error(e);
+        console.error(JSON.stringify(e));
     }
 })();

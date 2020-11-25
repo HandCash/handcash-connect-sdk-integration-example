@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  bot-army-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 1"
+  bot-army-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 2"
+  bot-army-3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 3"
+  bot-army-4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:  "npm run bot-timed-stress-test 300 4"

@@ -1,15 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-const {HandCashCloudAccount, AppAuthorization} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
+const handCashConnect = new HandCashConnect('5fbe19d9088ee710cf8fc614', Environments.iae);
+
 const authToken = process.argv[2];
-const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken);
+const cloudAccount = handCashConnect.getAccountFromAuthToken(authToken);
 
 (async () => {
     try {
-        const redirectionLoginUrl = await AppAuthorization.getRedirectionLoginUrl('5fbe19d9088ee710cf8fc614');
+        const redirectionLoginUrl = handCashConnect.getRedirectionUrl();
         console.log(`Redirection login URL: ${redirectionLoginUrl}`);
 
-        const previousPayment = await cloudAccount.wallet.getPayment('b808d3113cca45ebd842fb114ca794fc3bc91656a5f8e313e8df373759f99e5c');
+        const previousPayment = await cloudAccount.wallet.getPayment('0cd919d94f3ebff4d11fd95d6d3cdb0be9b749ba353b60070b4e7d77132cc629');
         console.log(`Previous payment: ${JSON.stringify(previousPayment)}`);
 
         const {publicProfile, privateProfile} = await cloudAccount.profile.getCurrentProfile();

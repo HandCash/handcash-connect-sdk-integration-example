@@ -1,10 +1,12 @@
 require('dotenv').config()
-const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
 const fs = require('fs');
+const chalk = require('chalk');
+
 const fundingAccessToken = process.env.fundingAccessToken;
 const topUpAmount =  Number(process.argv[2] || .01);
 const army = Number(process.argv[3]) || 1;
-const chalk = require('chalk');
+const handCashConnect = new HandCashConnect('5fbe19d9088ee710cf8fc614', Environments.iae);
 
 (async () => {
 
@@ -17,10 +19,7 @@ const chalk = require('chalk');
         const jsonString = fs.readFileSync(`./testers/${army}.json`)
         const testers = (JSON.parse(jsonString)).items
 
-        const cloudAccount = HandCashCloudAccount.fromAuthToken(
-            fundingAccessToken,
-            Environments.iae.apiEndpoint,
-        );
+        const cloudAccount = handCashConnect.getAccountFromAuthToken(fundingAccessToken);
 
         let i,j,temparray,chunk = 200;
         for (i=0,j=testers.length; i<j; i+=chunk) {

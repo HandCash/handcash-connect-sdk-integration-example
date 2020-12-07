@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
+const handCashConnect = new HandCashConnect('5fbe19d9088ee710cf8fc614', Environments.iae);
 const pLimit = require('p-limit');
 
 const limit = pLimit(5);
@@ -11,7 +12,7 @@ const authToken = process.argv[2];
     let successCount = 0;
     let errorCount = 0;
     try {
-        const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken, Environments.iae.apiEndpoint);
+        const cloudAccount = handCashConnect.getAccountFromAuthToken(authToken);
         const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
             Array(totalPayments)

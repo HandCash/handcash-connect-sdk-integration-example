@@ -1,13 +1,15 @@
 require('dotenv').config()
-const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
 const pLimit = require('p-limit');
 const limit = pLimit(3);
 const fs = require('fs');
 const { PrivateKey } = require('bsv');
+const chalk = require('chalk');
+
 const sendAmount = 600;
 const time = Number(process.argv[2] || 60);
 const army = Number(process.argv[3]) || 1;
-const chalk = require('chalk');
+const handCashConnect = new HandCashConnect('5fbe19d9088ee710cf8fc614', Environments.iae);
 
 (async () => {
 
@@ -20,10 +22,7 @@ const chalk = require('chalk');
         const testers = (JSON.parse(jsonString)).items;
         console.log(chalk.cyan(`Running Stress Test with bot Army ${army} with ${testers.length} bots for ${time} seconds...`))
         let cloudAccounts = testers.map((tester) => {
-            return HandCashCloudAccount.fromAuthToken(
-                PrivateKey(tester.privateKey).toHex(),
-                Environments.iae.apiEndpoint,
-            );
+            return handCashConnect.getAccountFromAuthToken(PrivateKey(tester.privateKey).toHex());
         });
 
         const aliases = await Promise.all(cloudAccounts.map((account)=> limit(()=> {

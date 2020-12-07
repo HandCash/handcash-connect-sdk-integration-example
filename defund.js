@@ -26,12 +26,12 @@ function readdirAsync(path) {
 
     const funder = HandCashCloudAccount.fromAuthToken(
         fundingAccessToken,
-        Environments.iae,
+        Environments.iae.apiEndpoint,
     );
 
     const destinationAlias = await funder.profile.getCurrentProfile().then(profile => profile.publicProfile.handle)
 
-    files.forEach((file) => { 
+    files.forEach((file) => {
         const jsonString = fs.readFileSync(`./testers/${file}`)
         testers = testers.concat((JSON.parse(jsonString)).items);
     });
@@ -39,7 +39,7 @@ function readdirAsync(path) {
     let cloudAccounts = testers.map((tester) =>  {
         return HandCashCloudAccount.fromAuthToken(
             PrivateKey(tester.privateKey).toHex(),
-            Environments.iae,
+            Environments.iae.apiEndpoint,
         );
     });
 

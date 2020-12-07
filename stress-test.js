@@ -11,7 +11,7 @@ const authToken = process.argv[2];
     let successCount = 0;
     let errorCount = 0;
     try {
-        const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken);
+        const cloudAccount = HandCashCloudAccount.fromAuthToken(authToken, Environments.iae.apiEndpoint);
         const publicProfile = await cloudAccount.profile.getCurrentProfile().then(profile => profile.publicProfile);
         await Promise.all(
             Array(totalPayments)

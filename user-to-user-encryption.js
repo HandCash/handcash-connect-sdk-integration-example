@@ -3,11 +3,11 @@
 const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
 const cloudAccountOne = HandCashCloudAccount.fromAuthToken(
     '7ae61183cc897ca7667f368b0d22357abf6fed2f6517fe38a734037409292a03',
-    Environments.iae,
+    Environments.iae.apiEndpoint,
 );
 const cloudAccountTwo = HandCashCloudAccount.fromAuthToken(
     'd3daf9b6730dd07a01539f49b2c8b3cbd08b0a63d8bec06af6a86645ad0cdfa3',
-    Environments.iae,
+    Environments.iae.apiEndpoint,
 );
 const {PrivateKey, PublicKey} = require('bsv');
 const ECIES = require('bsv/ecies');

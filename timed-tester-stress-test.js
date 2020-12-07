@@ -22,7 +22,7 @@ const chalk = require('chalk');
         let cloudAccounts = testers.map((tester) => {
             return HandCashCloudAccount.fromAuthToken(
                 PrivateKey(tester.privateKey).toHex(),
-                Environments.iae,
+                Environments.iae.apiEndpoint,
             );
         });
 
@@ -62,7 +62,7 @@ const chalk = require('chalk');
             await Promise.all(res)
             cloudAccounts = cloudAccounts.filter((account) =>  !aliasesToRemove.includes(account.alias));
             now = new Date();
-        
+
         }
         console.error(`Stress Test Completed - Successes: ${chalk.green(successCount)}, Errors: ${chalk.red(errorCount)}`);
     } catch(err){

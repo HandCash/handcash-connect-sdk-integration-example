@@ -19,10 +19,10 @@ const chalk = require('chalk');
         let cloudAccounts = testers.map((tester) => {
             return HandCashCloudAccount.fromAuthToken(
                 PrivateKey(tester.privateKey).toHex(),
-                Environments.iae,
+                Environments.iae.apiEndpoint,
             );
         });
-    
+
         const res = cloudAccounts.map((account, index) => {
             return Array(numberOfTransactions)
             .fill(0)

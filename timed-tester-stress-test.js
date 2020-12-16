@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect');
 const pLimit = require('p-limit');
 const limit = pLimit(3);
 const fs = require('fs');

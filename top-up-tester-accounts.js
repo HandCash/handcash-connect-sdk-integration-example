@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect');
 const fs = require('fs');
 const chalk = require('chalk');
 

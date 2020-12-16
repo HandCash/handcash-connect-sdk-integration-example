@@ -1,24 +1,24 @@
 require('dotenv').config();
 const http = require('superagent');
 const fs = require('fs');
-const { Environments } = require('@handcash/handcash-connect-beta');
-const numberOfTesters = Math.min(process.argv[2],100) || 100 
+const { Environments } = require('@handcash/handcash-connect');
+const numberOfTesters = Math.min(process.argv[2],100) || 100
 const army = process.argv[3] || 1;
 const appId = process.env.appId;
 const admin_token = process.env.admin_token;
 
 
-(async () => {   
-    try { 
+(async () => {
+    try {
         const resp = await http
             .post(`${Environments.iae.apiEndpoint}/admin/tester`)
             .set('Authorization', `Admin ${admin_token}`)
             .send({
                 numberOfTesters,
                 appId: appId,
-            }) 
+            })
         const newTesters = resp.body;
-      
+
         let existingTesters;
         try{
             const jsonString = fs.readFileSync(`./testers/${army}.json`)

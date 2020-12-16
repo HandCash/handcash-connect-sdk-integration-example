@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashCloudAccount, Environments} = require('@handcash/handcash-connect');
 const cloudAccount = handCashConnect.getAccountFromAuthToken(
     '7ae61183cc897ca7667f368b0d22357abf6fed2f6517fe38a734037409292a03', Environments.iae,
 );

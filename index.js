@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-const {HandCashConnect, Environments} = require('@handcash/handcash-connect-beta');
+const {HandCashConnect, Environments} = require('@handcash/handcash-connect');
 const handCashConnect = new HandCashConnect('5fbe19d9088ee710cf8fc614', Environments.iae);
 
 const authToken = process.argv[2];
@@ -8,6 +8,8 @@ const cloudAccount = handCashConnect.getAccountFromAuthToken(authToken);
 
 (async () => {
     try {
+        console.log(cloudAccount);
+        return;
         const redirectionLoginUrl = handCashConnect.getRedirectionUrl();
         console.log(`Redirection login URL: ${redirectionLoginUrl}`);
 

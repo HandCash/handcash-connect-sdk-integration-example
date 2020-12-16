@@ -9,7 +9,6 @@ const cloudAccount = handCashConnect.getAccountFromAuthToken(authToken);
 (async () => {
     try {
         console.log(cloudAccount);
-        return;
         const redirectionLoginUrl = handCashConnect.getRedirectionUrl();
         console.log(`Redirection login URL: ${redirectionLoginUrl}`);
 
